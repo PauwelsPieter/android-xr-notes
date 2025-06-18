@@ -20,24 +20,31 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
+import androidx.xr.compose.spatial.EdgeOffset
+import androidx.xr.compose.spatial.Orbiter
+import androidx.xr.compose.spatial.OrbiterEdge
 import androidx.xr.compose.spatial.Subspace
 import androidx.xr.compose.subspace.SpatialCurvedRow
 import androidx.xr.compose.subspace.SpatialPanel
+import androidx.xr.compose.subspace.layout.SpatialRoundedCornerShape
 import androidx.xr.compose.subspace.layout.SubspaceModifier
 import androidx.xr.compose.subspace.layout.height
 import androidx.xr.compose.subspace.layout.movable
 import androidx.xr.compose.subspace.layout.width
 import com.example.android.xrfundamentals.ui.component.Note
 import com.example.android.xrfundamentals.ui.component.NoteList
+import com.example.android.xrfundamentals.ui.component.ToggleSpaceModeButton
 import com.example.android.xrfundamentals.ui.component.XRFundamentalsTopAppBar
 import com.example.android.xrfundamentals.ui.layout.CompactLayout
 import com.example.android.xrfundamentals.ui.layout.ExpandedLayout
@@ -76,35 +83,25 @@ fun XRFundamentalsApp(
         SpatialCurvedRow(
             curveRadius = 825.dp
         ) {
-            SpatialPanel(
-                modifier = SubspaceModifier
-                    .width(1024.dp)
-                    .height(800.dp)
+            Orbiter(
+                position = OrbiterEdge.Top,
+                alignment = Alignment.End,
+                offset = EdgeOffset.inner(16.dp),
+                shape = SpatialRoundedCornerShape(
+                    CornerSize(percent = 100)
+                )
             ) {
-                Scaffold(
-                    topBar = { XRFundamentalsTopAppBar() }
-                ) { innerPadding ->
-                    Box(Modifier.padding(innerPadding)) {
-                        NoteList(
-                            modifier = Modifier
-                                .padding(16.dp)
-                                .verticalScroll(rememberScrollState())
-                        )
-                    }
-                }
+                ToggleSpaceModeButton()
             }
-            SpatialPanel(
-                modifier = SubspaceModifier
-                    .width(340.dp)
-                    .height(800.dp)
-                    .movable(true)
-            ) {
-                Surface {
-                    NoteList(
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .verticalScroll(rememberScrollState())
-                    )
+            for (index in 1..3) {
+                SpatialPanel(
+                    modifier = SubspaceModifier
+                        .width(200.dp)
+                        .height(100.dp)
+                        .movable(true, false, false)
+
+                ) {
+                    Note("Note $index")
                 }
             }
         }
