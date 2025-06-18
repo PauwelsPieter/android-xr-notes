@@ -36,8 +36,8 @@ import androidx.xr.compose.subspace.layout.SubspaceModifier
 import androidx.xr.compose.subspace.layout.height
 import androidx.xr.compose.subspace.layout.movable
 import androidx.xr.compose.subspace.layout.width
-import com.example.android.xrfundamentals.ui.component.PrimaryCard
-import com.example.android.xrfundamentals.ui.component.SecondaryCardList
+import com.example.android.xrfundamentals.ui.component.Note
+import com.example.android.xrfundamentals.ui.component.NoteList
 import com.example.android.xrfundamentals.ui.component.XRFundamentalsTopAppBar
 import com.example.android.xrfundamentals.ui.layout.CompactLayout
 import com.example.android.xrfundamentals.ui.layout.ExpandedLayout
@@ -58,22 +58,14 @@ fun XRFundamentalsApp(
             CompactLayout(
                 modifier = modifier,
                 primaryContent = {
-                    PrimaryCard()
-                },
-                secondaryContent = {
-                    SecondaryCardList()
+                    NoteList()
                 }
             )
         } else {
             ExpandedLayout(
                 modifier = modifier,
                 primaryContent = {
-                    PrimaryCard(
-                        modifier = Modifier.verticalScroll(rememberScrollState())
-                    )
-                },
-                secondaryContent = {
-                    SecondaryCardList(
+                    NoteList(
                         modifier = Modifier.verticalScroll(rememberScrollState())
                     )
                 }
@@ -93,7 +85,7 @@ fun XRFundamentalsApp(
                     topBar = { XRFundamentalsTopAppBar() }
                 ) { innerPadding ->
                     Box(Modifier.padding(innerPadding)) {
-                        PrimaryCard(
+                        NoteList(
                             modifier = Modifier
                                 .padding(16.dp)
                                 .verticalScroll(rememberScrollState())
@@ -108,7 +100,7 @@ fun XRFundamentalsApp(
                     .movable(true)
             ) {
                 Surface {
-                    SecondaryCardList(
+                    NoteList(
                         modifier = Modifier
                             .padding(16.dp)
                             .verticalScroll(rememberScrollState())

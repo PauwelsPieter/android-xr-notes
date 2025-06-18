@@ -29,8 +29,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CompactLayout(
     modifier: Modifier = Modifier,
-    primaryContent: @Composable () -> Unit,
-    secondaryContent: @Composable () -> Unit
+    primaryContent: @Composable () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -38,7 +37,5 @@ fun CompactLayout(
             .verticalScroll(rememberScrollState())
     ) {
         primaryContent()
-        Spacer(modifier = Modifier.height(16.dp))
-        secondaryContent()
     }
 }

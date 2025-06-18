@@ -16,39 +16,60 @@
 
 package com.example.android.xrfundamentals.ui.component
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.android.xrfundamentals.R
 import com.example.android.xrfundamentals.ui.theme.XRFundamentalsTheme
 
+
 @Composable
-fun PrimaryCard(modifier: Modifier = Modifier) {
-    Card(modifier = modifier) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(
-                stringResource(R.string.primary_title),
-                style = MaterialTheme.typography.titleLarge
-            )
-            Text(
-                stringResource(R.string.primary_description),
-                style = MaterialTheme.typography.bodyLarge
-            )
+fun Note(content: String) {
+    ElevatedCard (
+        modifier = Modifier.padding(10.dp).size(200.dp, 100.dp),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 6.dp
+        ),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+    ) {
+        Text(
+            text = content,
+            modifier = Modifier.padding(16.dp),
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Composable
+fun NoteList(modifier: Modifier = Modifier, numItems: Int = 15) {
+    LazyColumn {
+        items(numItems) { index ->
+            Note("Item: $index")
         }
     }
 }
 
 @Preview
 @Composable
-fun PrimaryCardPreview() {
+fun NoteCardPreview() {
     XRFundamentalsTheme {
-        PrimaryCard()
+        Note("Content")
+    }
+}
+
+@Preview
+@Composable
+fun NoteListPreview() {
+    XRFundamentalsTheme {
+        NoteList()
     }
 }

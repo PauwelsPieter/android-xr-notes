@@ -28,8 +28,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ExpandedLayout(
     modifier: Modifier = Modifier,
-    primaryContent: @Composable () -> Unit,
-    secondaryContent: @Composable () -> Unit
+    primaryContent: @Composable () -> Unit
 ) {
     Row(modifier = modifier.padding(16.dp)) {
         Box(
@@ -37,13 +36,6 @@ fun ExpandedLayout(
                 .weight(3f)
         ) {
             primaryContent()
-        }
-        Spacer(modifier = Modifier.width(16.dp))
-        Box(
-            modifier = Modifier
-                .weight(2f)
-        ) {
-            secondaryContent()
         }
     }
 }
