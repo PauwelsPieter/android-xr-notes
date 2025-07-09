@@ -18,8 +18,8 @@ package com.example.android.xrfundamentals.ui.component
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Card
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
@@ -50,8 +50,10 @@ fun Note(content: String) {
 }
 
 @Composable
-fun NoteList(modifier: Modifier = Modifier, numItems: Int = 15) {
-    LazyColumn {
+fun NoteList(modifier: Modifier = Modifier, numItems: Int = 100) {
+    LazyVerticalGrid (
+        columns = GridCells.Fixed(4),
+    ) {
         items(numItems) { index ->
             Note("Item: $index")
         }

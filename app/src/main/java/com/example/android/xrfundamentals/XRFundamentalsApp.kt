@@ -86,7 +86,7 @@ fun XRFundamentalsApp(
             Orbiter(
                 position = OrbiterEdge.Top,
                 alignment = Alignment.End,
-                offset = EdgeOffset.inner(16.dp),
+                offset = EdgeOffset.inner(100.dp),
                 shape = SpatialRoundedCornerShape(
                     CornerSize(percent = 100)
                 )
